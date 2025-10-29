@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://dvd7n6gd8rlw1"]
 
-[ext_resource type="Script" uid="uid://bch7c55du7cqq" path="res://Scripts/node_2d.gd" id="1_gntrk"]
+[ext_resource type="Script" uid="uid://bch7c55du7cqq" path="res://Scripts/DELETE_player.gd" id="1_gntrk"]
 [ext_resource type="Texture2D" uid="uid://b74l6ew15283e" path="res://Characters/Player/Idle.png" id="2_dewec"]
 [ext_resource type="Texture2D" uid="uid://bmdajnld83nt3" path="res://Characters/Player/Walk.png" id="3_5ixxa"]
 
@@ -228,7 +228,7 @@ script = ExtResource("1_gntrk")
 
 [node name="Player" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(184.00002, 176)
+position = Vector2(142.6, 77.864006)
 scale = Vector2(1.1, 1.054)
 sprite_frames = SubResource("SpriteFrames_x0ka3")
 animation = &"walk_back"
@@ -236,13 +236,13 @@ frame_progress = 0.27437556
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 texture_filter = 1
-position = Vector2(184, 184)
+position = Vector2(142.59999, 85.864006)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("CapsuleShape2D_0e48y")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 texture_filter = 1
-position = Vector2(186, 179)
+position = Vector2(144.59999, 80.864)
 zoom = Vector2(4, 4)
 limit_left = 0
 limit_top = 0
@@ -253,7 +253,9 @@ position_smoothing_enabled = true
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath(".")
 tree_root = SubResource("AnimationNodeAnimation_gntrk")
+anim_player = NodePath("../AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimationTree")

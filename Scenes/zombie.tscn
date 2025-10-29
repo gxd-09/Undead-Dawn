@@ -1,9 +1,30 @@
-[gd_scene load_steps=55 format=3 uid="uid://crx001gyel0ic"]
+[gd_scene load_steps=62 format=3 uid="uid://crx001gyel0ic"]
 
 [ext_resource type="Script" uid="uid://bvpw6boo51wj" path="res://Scripts/zombie.gd" id="1_n70j1"]
 [ext_resource type="Texture2D" uid="uid://bl7u1mb8wvr8j" path="res://Characters/Zombie/Walk.png" id="2_iyl7r"]
 [ext_resource type="Texture2D" uid="uid://bqn41qkj1cuh6" path="res://Characters/Zombie/Death.png" id="2_vy0uf"]
+[ext_resource type="Texture2D" uid="uid://d1qasy81da4dt" path="res://Characters/Zombie/Idle.png" id="2_w2xga"]
 [ext_resource type="PackedScene" uid="uid://bds101fkj754g" path="res://Scenes/healthbar.tscn" id="3_iyl7r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oluo0"]
+atlas = ExtResource("2_w2xga")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpmu7"]
+atlas = ExtResource("2_w2xga")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lheda"]
+atlas = ExtResource("2_w2xga")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0aq8d"]
+atlas = ExtResource("2_w2xga")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vj3n"]
+atlas = ExtResource("2_w2xga")
+region = Rect2(128, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oef5j"]
 atlas = ExtResource("2_vy0uf")
@@ -195,9 +216,24 @@ region = Rect2(288, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_050lg"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oluo0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpmu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lheda")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0aq8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vj3n")
+}],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -374,19 +410,25 @@ height = 14.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_n70j1"]
 radius = 75.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w2xga"]
+height = 28.0
+
 [node name="Zombie" type="CharacterBody2D"]
 light_mask = 2
 visibility_layer = 2
+collision_layer = 16
+collision_mask = 16
 script = ExtResource("1_n70j1")
 
 [node name="ZombieSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(281, 192)
+position = Vector2(-1, -1)
 sprite_frames = SubResource("SpriteFrames_050lg")
-animation = &"zwalk_left"
+animation = &"idle"
+frame_progress = 0.5776436
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(284, 196)
+position = Vector2(2, 3)
 shape = SubResource("CapsuleShape2D_oef5j")
 
 [node name="detection_area" type="Area2D" parent="."]
@@ -394,17 +436,24 @@ collision_layer = 16
 collision_mask = 16
 
 [node name="DetectionArea" type="CollisionShape2D" parent="detection_area"]
-position = Vector2(283, 196)
 shape = SubResource("CircleShape2D_n70j1")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Healthbar" parent="." instance=ExtResource("3_iyl7r")]
-offset_left = 265.0
-offset_top = 169.0
-offset_right = 301.0
-offset_bottom = 174.0
+offset_left = -17.0
+offset_top = -24.0
+offset_right = 19.0
+offset_bottom = -19.0
 
-[connection signal="body_entered" from="detection_area" to="." method="_on_area_2d_body_entered"]
+[node name="enemy_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox"]
+shape = SubResource("CapsuleShape2D_w2xga")
+
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="detection_area" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_entered"]
+[connection signal="body_exited" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_exited"]

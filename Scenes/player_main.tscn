@@ -1,12 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://y8aw8cq5xxy"]
+[gd_scene load_steps=28 format=3 uid="uid://y8aw8cq5xxy"]
 
-[ext_resource type="Script" uid="uid://b0xxqcbhmj7ht" path="res://Scripts/player_2.gd" id="1_dn4j3"]
+[ext_resource type="Script" uid="uid://b0xxqcbhmj7ht" path="res://Scripts/player_main.gd" id="1_dn4j3"]
 [ext_resource type="Texture2D" uid="uid://bmdajnld83nt3" path="res://Characters/Player/Walk.png" id="1_u8k5t"]
 [ext_resource type="Texture2D" uid="uid://b74l6ew15283e" path="res://Characters/Player/Idle.png" id="2_dn4j3"]
 [ext_resource type="PackedScene" uid="uid://7y3rt4k4lcqi" path="res://Scenes/heart_bar.tscn" id="4_encxe"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dn4j3"]
-radius = 4.1231055
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kfthp"]
 animation = &"idle_down"
@@ -239,9 +236,15 @@ _data = {
 &"walk_up": SubResource("Animation_65pas")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dn4j3"]
+radius = 4.1231055
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h3e6n"]
+radius = 11.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
 texture_filter = 1
-position = Vector2(322, 172)
+position = Vector2(325, 171)
 collision_layer = 16
 collision_mask = 6
 script = ExtResource("1_dn4j3")
@@ -255,10 +258,6 @@ hframes = 3
 vframes = 4
 frame = 9
 metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
-shape = SubResource("CircleShape2D_dn4j3")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_dn4j3")
@@ -276,6 +275,10 @@ texture = ExtResource("1_u8k5t")
 hframes = 5
 vframes = 4
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_dn4j3")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 texture_filter = 1
 zoom = Vector2(4, 4)
@@ -288,3 +291,16 @@ position_smoothing_enabled = true
 [node name="heart_bar" parent="." instance=ExtResource("4_encxe")]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="playerHitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerHitbox"]
+shape = SubResource("CapsuleShape2D_h3e6n")
+
+[node name="attack_cooldown" type="Timer" parent="playerHitbox"]
+
+[connection signal="body_entered" from="playerHitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="playerHitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="playerHitbox/attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

@@ -112,7 +112,7 @@
 [ext_resource type="Texture2D" uid="uid://dop36uew2vc1r" path="res://Objects/Nature/Flowers_Mashrooms_Other-nature-stuff/Stump_2_Mushrooms.png" id="110_ruqyk"]
 [ext_resource type="Texture2D" uid="uid://b63db86400ixx" path="res://Objects/Nature/Flowers_Mashrooms_Other-nature-stuff/Tree_4_Dry_Green.png" id="111_56lif"]
 [ext_resource type="Texture2D" uid="uid://cv8mebkg7yion" path="res://Objects/Nature/Flowers_Mashrooms_Other-nature-stuff/Tree-trunk_1_Green.png" id="112_lqfcp"]
-[ext_resource type="Script" uid="uid://bch7c55du7cqq" path="res://Scripts/node_2d.gd" id="113_uvuul"]
+[ext_resource type="Script" uid="uid://bch7c55du7cqq" path="res://Scripts/DELETE_player.gd" id="113_uvuul"]
 [ext_resource type="Texture2D" uid="uid://b74l6ew15283e" path="res://Characters/Player/Idle.png" id="114_am501"]
 [ext_resource type="Texture2D" uid="uid://bmdajnld83nt3" path="res://Characters/Player/Walk.png" id="115_qaqff"]
 
