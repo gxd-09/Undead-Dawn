@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://7y3rt4k4lcqi"]
+
+[ext_resource type="PackedScene" uid="uid://bcxqshyv3vlgv" path="res://Scenes/heart.tscn" id="1_herul"]
+
+[node name="heart_bar" type="CanvasLayer"]
+scale = Vector2(4.59, 4.59)
+transform = Transform2D(4.59, 0, 0, 4.59, 0, 0)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="heart" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Heart" parent="HBoxContainer/heart" instance=ExtResource("1_herul")]
+position = Vector2(10, 9)
+scale = Vector2(0.025559705, 0.02376301)
+
+[node name="heart2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Heart2" parent="HBoxContainer/heart2" instance=ExtResource("1_herul")]
+position = Vector2(6, 9)
+scale = Vector2(0.025559705, 0.02376301)
+offset = Vector2(400, 0)
+
+[node name="heart3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Heart2" parent="HBoxContainer/heart3" instance=ExtResource("1_herul")]
+position = Vector2(12, 9)
+scale = Vector2(0.025559705, 0.02376301)
+offset = Vector2(400, 0)
+
+[node name="heart4" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Heart2" parent="HBoxContainer/heart4" instance=ExtResource("1_herul")]
+position = Vector2(18, 9)
+scale = Vector2(0.025559705, 0.02376301)
+offset = Vector2(400, 0)
+
+[node name="heart5" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Heart2" parent="HBoxContainer/heart5" instance=ExtResource("1_herul")]
+position = Vector2(23.999998, 9)
+scale = Vector2(0.025559705, 0.02376301)
+offset = Vector2(400, 0)
+
+[node name="heart6" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Heart2" parent="HBoxContainer/heart6" instance=ExtResource("1_herul")]
+position = Vector2(29.999998, 9)
+scale = Vector2(0.025559705, 0.02376301)
+offset = Vector2(400, 0)

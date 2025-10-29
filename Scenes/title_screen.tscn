@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://72slmrcamyb2"]
+
+[ext_resource type="Script" uid="uid://7274of1hkrhr" path="res://Scripts/title_screen.gd" id="1_4gxqj"]
+[ext_resource type="Texture2D" uid="uid://cu7ly3avqicuj" path="res://UI/startscreen.png" id="2_twnyg"]
+[ext_resource type="Texture2D" uid="uid://cr1cyg2t1oqva" path="res://UI/text-1761269331003.png" id="3_55kwv"]
+[ext_resource type="Texture2D" uid="uid://bigixmq54xru2" path="res://UI/text-1761269096457.png" id="4_twnyg"]
+[ext_resource type="AudioStream" uid="uid://cqgy4gh8k8446" path="res://audios/music_zapsplat_space_trivia.mp3" id="5_55kwv"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4gxqj")
+
+[node name="Jvwly6f3f9Ny" type="Sprite2D" parent="."]
+position = Vector2(573, 414)
+scale = Vector2(0.6408333, 0.6174073)
+texture = ExtResource("2_twnyg")
+
+[node name="Text1761269331003" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(551, 92.00001)
+scale = Vector2(0.7305516, 0.71428573)
+texture = ExtResource("3_55kwv")
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 370.0
+offset_right = 686.0
+offset_bottom = 431.0
+text = "Start"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(330, 232)
+texture = ExtResource("4_twnyg")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_55kwv")
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]

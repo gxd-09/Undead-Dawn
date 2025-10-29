@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://crit8fyy223ka"]
+
+[ext_resource type="Texture2D" uid="uid://co3qu6s204gmp" path="res://Objects/Pickable/Bandage.png" id="1_2juse"]
+
+[node name="Bandage" type="Sprite2D"]
+position = Vector2(459.75, 288.75)
+scale = Vector2(2.9, 2.642857)
+texture = ExtResource("1_2juse")

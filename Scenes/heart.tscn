@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcxqshyv3vlgv"]
+
+[ext_resource type="Texture2D" uid="uid://cmgbg1llvi1ep" path="res://UI/heart_9.png" id="1_452e1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4aiu"]
+atlas = ExtResource("1_452e1")
+region = Rect2(670, 0, 335, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgxw8"]
+atlas = ExtResource("1_452e1")
+region = Rect2(335, 0, 335, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rycqq"]
+atlas = ExtResource("1_452e1")
+region = Rect2(670, 0, 335, 384)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6wkup"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4aiu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgxw8")
+}],
+"loop": true,
+"name": &"beating",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rycqq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Heart" type="AnimatedSprite2D"]
+position = Vector2(51.625004, 51.249996)
+scale = Vector2(0.15149255, 0.13411456)
+sprite_frames = SubResource("SpriteFrames_6wkup")
+animation = &"idle"

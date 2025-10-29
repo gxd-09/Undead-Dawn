@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cks1hjp102pfv"
+path="res://.godot/imported/City of the Wolf - The Mini Vandals.mp3-8ec02ea95fda5b58f960283a196e8e1e.mp3str"
+
+[deps]
+
+source_file="res://audios/City of the Wolf - The Mini Vandals.mp3"
+dest_files=["res://.godot/imported/City of the Wolf - The Mini Vandals.mp3-8ec02ea95fda5b58f960283a196e8e1e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
