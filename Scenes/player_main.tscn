@@ -427,6 +427,7 @@ collision_mask = 18
 shape = SubResource("CapsuleShape2D_h3e6n")
 
 [node name="attack_cooldown" type="Timer" parent="playerHitbox"]
+wait_time = 1.5
 
 [node name="deal_attack_timer" type="Timer" parent="."]
 

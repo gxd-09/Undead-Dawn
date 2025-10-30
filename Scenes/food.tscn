@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0ghmer7bn8y2"]
+
+[ext_resource type="Script" uid="uid://bg4yqf3bcn0fb" path="res://Scripts/food.gd" id="1_fhto3"]
+[ext_resource type="Texture2D" uid="uid://qbnci7eh4iew" path="res://Objects/Pickable/Canned-food.png" id="2_h4kkx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d37wj"]
+size = Vector2(10.5, 10.5)
+
+[node name="food" type="Area2D"]
+collision_layer = 2
+collision_mask = 16
+script = ExtResource("1_fhto3")
+
+[node name="canned_food" type="Sprite2D" parent="."]
+position = Vector2(15.75, 8.75)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_h4kkx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(15.75, 8.75)
+shape = SubResource("RectangleShape2D_d37wj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

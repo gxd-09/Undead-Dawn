@@ -5,4 +5,9 @@ extends Node2D
 		#$MainAudio.play()
 
 
-var player_current_attack = true
+var player_current_attack = false
+var player_health = 100
+var can_pick_up_food = true
+var zombie_attacking = false
+
+@onready var kill_count = 0

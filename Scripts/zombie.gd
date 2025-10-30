@@ -55,12 +55,18 @@ func _on_enemy_hitbox_body_exited(body: Node2D) -> void:
 		player_in_attack_zone = false
 
 func deal_with_damage():
-	if player_in_attack_zone and global.player_current_attack:
+	if player_in_attack_zone:
+		print("in_attack_zone true")
+	if global.player_current_attack:
+		#print("player_current_attack true")
 		if can_take_damage:
-			health -= 20
+			health -= 25
 			can_take_damage = false
 			await get_tree().create_timer(take_damage_cooldown).timeout
 			can_take_damage = true
 			print("zombie health = ",health)
 			if health <= 0:
+				$ZombieSprite.play("zdead")
+				global.kill_count += 1
+				await get_tree().create_timer(1.4).timeout
 				self.queue_free()

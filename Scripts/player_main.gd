@@ -27,6 +27,7 @@ func _ready():
 
 func _physics_process(_delta:float) -> void:
 	enemy_attack()
+	#take_damage()
 	attack()
 	
 	
@@ -96,6 +97,7 @@ func _on_player_hitbox_body_exited(body: Node2D) -> void:
 		
 func enemy_attack():
 	if enemy_in_attack_range and enemy_attack_cooldown:
+		global.zombie_attacking = true
 		health -= 10
 		enemy_attack_cooldown = false
 		attack_cooldown.start()
@@ -108,17 +110,20 @@ func _on_attack_cooldown_timeout() -> void:
 func death():
 	get_tree().change_scene_to_file("res://Scenes/death_respawn.tscn")
 
-## Player Heart Bar
-#
+### Player Heart Bar
+##
 #var alive : bool = true
 #
 #var hearts_list : Array[TextureRect]
 #var health = 6
 #
 #func take_damage():
-	#if health > 0:
-		#health -= 1
-		#update_heart_display()
+	#if enemy_in_attack_range and enemy_attack_cooldown:
+		#if health > 0:
+			#health -= 1
+			#update_heart_display()
+		#attack_cooldown.start()
+		#print("player health: ", health)
 		#
 #func update_heart_display():
 	#for i in range(hearts_list.size()):
@@ -129,5 +134,16 @@ func death():
 		#hearts_list[0].get_child(0).play("beating")
 	#elif health > 1:
 		#hearts_list[0].get_child(0).play("idle")
-	#
 	
+func heal():
+	health += 20
+	if health > 100:
+		health = 100
+	print(health)
+
+func speed_boost():
+	speed = 100
+	global.can_pick_up_food = false
+	await get_tree().create_timer(5.0).timeout
+	speed = 50
+	global.can_pick_up_food = true
