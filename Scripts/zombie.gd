@@ -6,6 +6,8 @@ var player = null
 
 var health = 100
 var player_in_attack_zone = false
+var can_take_damage = true
+@export var take_damage_cooldown: float = 1.0
 
 func enemy():
 	pass
@@ -50,12 +52,15 @@ func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
 	
 func _on_enemy_hitbox_body_exited(body: Node2D) -> void:
 	if body is Player:
-		player_in_attack_zone = true
+		player_in_attack_zone = false
 
 func deal_with_damage():
 	if player_in_attack_zone and global.player_current_attack:
-		health -= 20
-		print("zombie health = ",health)
-		if health <= 0:
-			self.queue_free()
-	
+		if can_take_damage:
+			health -= 20
+			can_take_damage = false
+			await get_tree().create_timer(take_damage_cooldown).timeout
+			can_take_damage = true
+			print("zombie health = ",health)
+			if health <= 0:
+				self.queue_free()

@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw15hwyllwf1p"]
+
+[ext_resource type="Script" uid="uid://h66j40keifa2" path="res://Scenes/death_respawn.gd" id="1_r2dce"]
+
+[node name="DeathRespawn" type="CanvasLayer"]
+script = ExtResource("1_r2dce")
+
+[node name="DeathBackground" type="Sprite2D" parent="."]
+
+[node name="DeathMessage" type="Label" parent="."]
+offset_left = 489.0
+offset_top = 254.0
+offset_right = 695.0
+offset_bottom = 336.0
+text = "You died!"
+
+[node name="Respawn" type="Button" parent="."]
+offset_left = 525.0
+offset_top = 360.0
+offset_right = 682.0
+offset_bottom = 422.0
+text = "Respawn"
+
+[connection signal="pressed" from="Respawn" to="." method="_on_respawn_pressed"]

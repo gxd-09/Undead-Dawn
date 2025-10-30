@@ -27,12 +27,14 @@ func _ready():
 
 func _physics_process(_delta:float) -> void:
 	enemy_attack()
+	attack()
+	
 	
 	if health <= 0:
 		player_alive = false
-		# add respawn screen get_tree().change_scene_file_toblablabla
+		death()
 		health = 0
-		print("Player has been killed")
+		#print("Player has been killed")
 	
 	input = Input.get_vector("left","right","up","down")
 	velocity = input * speed
@@ -44,21 +46,68 @@ func select_animation():
 	if velocity == Vector2.ZERO:
 		if attack_in_progress == false:
 			playback.travel("Idle")
-			$Sprite2D2.visible = false
-			$Sprite2D.visible = true
-	else:
-		playback.travel("Walk")
-		$Sprite2D.visible = false
-		$Sprite2D2.visible = true
+			$walk.visible = false
+			$idle.visible = true
+			$attack.visible = false
+		else:
+			playback.travel("Attack")
+			$walk.visible = false
+			$idle.visible = false
+			$attack.visible = true
+	elif velocity != Vector2.ZERO:
+		if attack_in_progress == false:
+			playback.travel("Walk")
+			$idle.visible = false
+			$walk.visible = true
+			$attack.visible = false
+		#elif attack_in_progress == true:
+			#playback.travel("Attack")
+			#$idle.visible = false
+			#$walk.visible = false
+			#$attack.visible = true
 	
 func update_animation_parameters():
 	if input == Vector2.ZERO:
 		return
 	animation_tree["parameters/Idle/blend_position"] = input
 	animation_tree["parameters/Walk/blend_position"] = input
+	animation_tree["parameters/Attack/blend_position"] = input
+
+#attack 
+func attack():
+	if Input.is_action_just_pressed("attack"):
+		global.player_current_attack = true
+		attack_in_progress = true
+		#print(attack_in_progress)
+		print("attacking")
+		await get_tree().create_timer(0.7).timeout #or just use the deal_attack_timer node (assign as var first)
+		global.player_current_attack = false
+		attack_in_progress = false
+
+
+func _on_player_hitbox_body_entered(body: Node2D) -> void:
+	if body is zombie:
+		enemy_in_attack_range = true
+
+
+func _on_player_hitbox_body_exited(body: Node2D) -> void:
+	if body is zombie:
+		enemy_in_attack_range = false
+		
+func enemy_attack():
+	if enemy_in_attack_range and enemy_attack_cooldown:
+		health -= 10
+		enemy_attack_cooldown = false
+		attack_cooldown.start()
+		print("player health: ", health)
+
+
+func _on_attack_cooldown_timeout() -> void:
+	enemy_attack_cooldown = true
 	
-	
-	#
+func death():
+	get_tree().change_scene_to_file("res://Scenes/death_respawn.tscn")
+
 ## Player Heart Bar
 #
 #var alive : bool = true
@@ -82,26 +131,3 @@ func update_animation_parameters():
 		#hearts_list[0].get_child(0).play("idle")
 	#
 	
-
-
-func _on_player_hitbox_body_entered(body: Node2D) -> void:
-	print("entered")
-	if body is zombie:
-		enemy_in_attack_range = true
-
-
-func _on_player_hitbox_body_exited(body: Node2D) -> void:
-	print("exit")
-	if body is zombie:
-		enemy_in_attack_range = false
-		
-func enemy_attack():
-	if enemy_in_attack_range and enemy_attack_cooldown:
-		health -= 10
-		enemy_attack_cooldown = false
-		attack_cooldown.start()
-		print(health)
-
-
-func _on_attack_cooldown_timeout() -> void:
-	enemy_attack_cooldown = true
