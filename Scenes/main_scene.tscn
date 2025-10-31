@@ -1,8 +1,9 @@
-[gd_scene load_steps=180 format=4 uid="uid://mjk1mvyasg4u"]
+[gd_scene load_steps=181 format=4 uid="uid://mjk1mvyasg4u"]
 
 [ext_resource type="Script" uid="uid://bb315uxfx3wm3" path="res://Scripts/main_scene_global.gd" id="1_fsta0"]
 [ext_resource type="Texture2D" uid="uid://drgm12hpqpf1y" path="res://Tiles/Background_Green_TileSet.png" id="1_up511"]
 [ext_resource type="Texture2D" uid="uid://c6s0exsug1h47" path="res://Tiles/Brick-Wall_TileSet.png" id="2_fsta0"]
+[ext_resource type="PackedScene" uid="uid://4hic5m5yj0fp" path="res://Scenes/hud.tscn" id="2_r15gi"]
 [ext_resource type="Texture2D" uid="uid://dggqxribqusxe" path="res://Tiles/Background_Dark-Green_TileSet.png" id="3_jd1x2"]
 [ext_resource type="Texture2D" uid="uid://m6uy0u2rn0r4" path="res://Tiles/Garbage_TileSet.png" id="4_ajvmx"]
 [ext_resource type="Texture2D" uid="uid://c3p3pcomfg5s" path="res://Tiles/Roof_TileSet.png" id="5_skrvl"]
@@ -1750,8 +1751,13 @@ size = Vector2(421.5, 64)
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_fsta0")
+zombie_scene = ExtResource("118_ajvmx")
 metadata/_edit_vertical_guides_ = [1153.0]
 metadata/_edit_horizontal_guides_ = [655.0, 654.0]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("2_r15gi")]
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -1777,10 +1783,8 @@ position = Vector2(244, 247)
 collision_mask = 22
 
 [node name="Player" parent="." instance=ExtResource("156_y3o61")]
-visible = false
 
 [node name="objects" type="Node2D" parent="."]
-visible = false
 light_mask = 6
 
 [node name="Bench6UpOvergrownDarkGreen" type="Sprite2D" parent="objects"]
@@ -2473,7 +2477,6 @@ position = Vector2(698, 237)
 texture = ExtResource("157_3noes")
 
 [node name="nature" type="Node2D" parent="."]
-visible = false
 
 [node name="Grass3SteppingOnAnimationGreenSheet2" type="Sprite2D" parent="nature"]
 texture_filter = 1
@@ -2850,7 +2853,6 @@ position = Vector2(66, 42)
 texture = ExtResource("149_v18wt")
 
 [node name="buildings" type="Node2D" parent="."]
-visible = false
 light_mask = 4
 visibility_layer = 4
 
@@ -3007,7 +3009,6 @@ position = Vector2(262.25, 349)
 shape = SubResource("RectangleShape2D_r15gi")
 
 [node name="Pickups" type="Node2D" parent="."]
-visible = false
 
 [node name="Food" type="Node2D" parent="Pickups"]
 position = Vector2(325, 171)
@@ -3035,4 +3036,3 @@ position = Vector2(325, 109)
 [node name="Node" type="Node" parent="."]
 
 [node name="ZombieSpawn" type="Marker2D" parent="Node"]
-visible = false

@@ -22,6 +22,10 @@ global="*res://Scripts/main_scene_global.gd"
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
+[global_group]
+
+hud=""
+
 [input]
 
 left={

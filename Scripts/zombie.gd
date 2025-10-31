@@ -7,10 +7,13 @@ var player = null
 var health = 100
 var player_in_attack_zone = false
 var can_take_damage = true
+var dead = false
 @export var take_damage_cooldown: float = 1.0
 
-func enemy():
-	pass
+@onready var healthbar = $Healthbar
+
+func _ready():
+	healthbar.init_health(health)
 	
 ##########################################
 func _physics_process(delta):
@@ -28,8 +31,10 @@ func _physics_process(delta):
 			else:
 				$ZombieSprite.flip_h=false
 				$ZombieSprite.play("zwalk_right")
-	else:
+	elif !player_chase and !dead:
 		$ZombieSprite.play("idle")
+	elif !player_chase and dead:
+		$ZombieSprite.play("zdead")
 	#move_and_slide()
 	move_and_collide(Vector2(0,0))
 
@@ -61,12 +66,34 @@ func deal_with_damage():
 		#print("player_current_attack true")
 		if can_take_damage:
 			health -= 25
+			set_health_bar()
 			can_take_damage = false
 			await get_tree().create_timer(take_damage_cooldown).timeout
 			can_take_damage = true
 			print("zombie health = ",health)
 			if health <= 0:
-				$ZombieSprite.play("zdead")
-				global.kill_count += 1
-				await get_tree().create_timer(1.4).timeout
-				self.queue_free()
+				zombie_death()
+
+func zombie_death():
+	dead = true
+	health = 0
+	can_take_damage = false
+	player_chase = false
+	player_in_attack_zone = false
+	global.kill_count += 1
+	await get_tree().create_timer(1.4).timeout
+	self.queue_free()
+	
+	
+
+	
+################################################
+# health bar functionality
+
+func set_health_bar():
+	healthbar.health = health
+	
+	
+	
+	
+	

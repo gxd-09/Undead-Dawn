@@ -441,16 +441,17 @@ shape = SubResource("CircleShape2D_n70j1")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="Healthbar" parent="." instance=ExtResource("3_iyl7r")]
-offset_left = -17.0
-offset_top = -24.0
-offset_right = 19.0
-offset_bottom = -19.0
-
 [node name="enemy_hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox"]
 shape = SubResource("CapsuleShape2D_w2xga")
+
+[node name="Healthbar" parent="." instance=ExtResource("3_iyl7r")]
+offset_left = -13.0
+offset_top = -19.0
+offset_right = 87.0
+offset_bottom = -9.0
+scale = Vector2(0.2673512, 0.3490931)
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]

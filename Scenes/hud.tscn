@@ -1,23 +1,55 @@
-[gd_scene load_steps=2 format=3 uid="uid://4hic5m5yj0fp"]
+[gd_scene load_steps=3 format=3 uid="uid://4hic5m5yj0fp"]
 
 [ext_resource type="FontFile" uid="uid://bqvmcg0h6gyrl" path="res://Objects/Pickable/ByteBounce.ttf" id="1_e0onf"]
+[ext_resource type="Script" uid="uid://c1ha2f4xneq8i" path="res://Scripts/hud.gd" id="1_fccik"]
 
-[node name="HUD" type="Control"]
+[node name="HUD" type="Control" groups=["hud"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fccik")
 
-[node name="KillCount" type="Label" parent="."]
+[node name="Kill" type="Label" parent="."]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 48.0
-offset_right = 108.0
-offset_bottom = 71.0
+offset_left = 19.0
+offset_top = 72.0
+offset_right = 159.0
+offset_bottom = 100.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("1_e0onf")
-text = "Kill Count: 00"
+theme_override_font_sizes/font_size = 40
+text = "Kill Count:"
+
+[node name="Wave" type="Label" parent="."]
+layout_mode = 0
+offset_left = 981.0
+offset_top = 10.0
+offset_right = 1094.0
+offset_bottom = 33.0
+text = "Current wave: "
+
+[node name="WaveCount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1107.0
+offset_top = 10.0
+offset_right = 1147.0
+offset_bottom = 33.0
+text = "00"
+
+[node name="KillCount" type="Label" parent="."]
+layout_mode = 1
+offset_left = 177.0
+offset_top = 72.0
+offset_right = 372.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("1_e0onf")
+theme_override_font_sizes/font_size = 40
+text = "00"

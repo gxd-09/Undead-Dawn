@@ -5,7 +5,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hs0wk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d838e"]
-bg_color = Color(0.19858798, 0.66642964, 0.5337845, 1)
+bg_color = Color(0.9182294, 0.36931878, 0.40645432, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mooiv"]
 bg_color = Color(0.14406255, 0.14406255, 0.14406249, 1)
@@ -20,10 +20,12 @@ shadow_offset = Vector2(0, 1)
 bg_color = Color(1, 1, 1, 1)
 
 [node name="Healthbar" type="ProgressBar"]
+z_index = 1
 offset_left = 61.0
 offset_top = 31.0
 offset_right = 161.0
 offset_bottom = 41.0
+scale = Vector2(0.36733013, 0.36988726)
 theme_override_styles/background = SubResource("StyleBoxEmpty_hs0wk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_d838e")
 value = 60.0
