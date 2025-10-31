@@ -1,10 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://72slmrcamyb2"]
+[gd_scene load_steps=8 format=3 uid="uid://72slmrcamyb2"]
 
 [ext_resource type="Script" uid="uid://7274of1hkrhr" path="res://Scripts/title_screen.gd" id="1_4gxqj"]
 [ext_resource type="Texture2D" uid="uid://cu7ly3avqicuj" path="res://UI/startscreen.png" id="2_twnyg"]
 [ext_resource type="Texture2D" uid="uid://cr1cyg2t1oqva" path="res://UI/text-1761269331003.png" id="3_55kwv"]
+[ext_resource type="FontFile" uid="uid://bqvmcg0h6gyrl" path="res://Objects/Pickable/ByteBounce.ttf" id="4_12m1t"]
 [ext_resource type="Texture2D" uid="uid://bigixmq54xru2" path="res://UI/text-1761269096457.png" id="4_twnyg"]
 [ext_resource type="AudioStream" uid="uid://cqgy4gh8k8446" path="res://audios/music_zapsplat_space_trivia.mp3" id="5_55kwv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vd4x"]
+bg_color = Color(0.9266643, 0.4343228, 0.23476002, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.75733536, 0.4780283, 0.07331798, 0.6)
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -28,7 +43,21 @@ offset_left = 480.0
 offset_top = 370.0
 offset_right = 686.0
 offset_bottom = 431.0
+theme_override_fonts/font = ExtResource("4_12m1t")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_6vd4x")
 text = "Start"
+
+[node name="Controls" type="Button" parent="."]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 468.0
+offset_right = 687.0
+offset_bottom = 529.0
+theme_override_fonts/font = ExtResource("4_12m1t")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_6vd4x")
+text = "Controls"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(330, 232)
@@ -38,3 +67,4 @@ texture = ExtResource("4_twnyg")
 stream = ExtResource("5_55kwv")
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Controls" to="." method="_on_controls_pressed"]

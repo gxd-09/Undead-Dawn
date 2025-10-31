@@ -1,10 +1,11 @@
-[gd_scene load_steps=39 format=3 uid="uid://y8aw8cq5xxy"]
+[gd_scene load_steps=40 format=3 uid="uid://y8aw8cq5xxy"]
 
 [ext_resource type="Script" uid="uid://b0xxqcbhmj7ht" path="res://Scripts/player_main.gd" id="1_dn4j3"]
 [ext_resource type="Texture2D" uid="uid://bmdajnld83nt3" path="res://Characters/Player/Walk.png" id="1_u8k5t"]
 [ext_resource type="Texture2D" uid="uid://b74l6ew15283e" path="res://Characters/Player/Idle.png" id="2_dn4j3"]
 [ext_resource type="Texture2D" uid="uid://dwfqyw4xg2if4" path="res://Characters/Player/Stab.png" id="3_e2uto"]
 [ext_resource type="PackedScene" uid="uid://7y3rt4k4lcqi" path="res://Scenes/heart_bar.tscn" id="4_encxe"]
+[ext_resource type="PackedScene" uid="uid://bcxqshyv3vlgv" path="res://Scenes/heart.tscn" id="6_noye3"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_noye3"]
 animation = &"attack_down"
@@ -123,6 +124,78 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_x2upu"]
+resource_name = "attack_down"
+length = 0.7
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("attack:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.15, 0.3, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ue88o"]
+resource_name = "attack_left"
+length = 0.7
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("attack:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.15, 0.3, 0.45, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_0jnqq"]
+resource_name = "attack_right"
+length = 0.7
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("attack:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.15, 0.3, 0.45, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_sq3ud"]
+resource_name = "attack_up"
+length = 0.7
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("attack:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.15, 0.3, 0.45, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_w64td"]
@@ -265,78 +338,6 @@ tracks/0/keys = {
 "values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_ue88o"]
-resource_name = "attack_left"
-length = 0.7
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("attack:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.15, 0.3, 0.45, 0.65),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3)]
-}
-
-[sub_resource type="Animation" id="Animation_0jnqq"]
-resource_name = "attack_right"
-length = 0.7
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("attack:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.15, 0.3, 0.45, 0.65),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)]
-}
-
-[sub_resource type="Animation" id="Animation_sq3ud"]
-resource_name = "attack_up"
-length = 0.7
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("attack:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.15, 0.3, 0.45, 0.65),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_x2upu"]
-resource_name = "attack_down"
-length = 0.7
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("attack:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.15, 0.3, 0.45, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_encxe"]
 _data = {
 &"RESET": SubResource("Animation_yp5jh"),
@@ -355,12 +356,13 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dn4j3"]
-radius = 4.1231055
+radius = 4.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h3e6n"]
 radius = 11.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
+z_index = 5
 texture_filter = 1
 position = Vector2(325, 171)
 collision_layer = 16
@@ -416,6 +418,7 @@ limit_bottom = 648
 position_smoothing_enabled = true
 
 [node name="heart_bar" parent="." instance=ExtResource("4_encxe")]
+visible = false
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
@@ -427,9 +430,67 @@ collision_mask = 18
 shape = SubResource("CapsuleShape2D_h3e6n")
 
 [node name="attack_cooldown" type="Timer" parent="playerHitbox"]
-wait_time = 1.5
+wait_time = 2.0
 
 [node name="deal_attack_timer" type="Timer" parent="."]
+
+[node name="hearts_bar" type="CanvasLayer" parent="."]
+offset = Vector2(-1300, -680)
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, -1300, -680)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="hearts_bar"]
+offset_left = 325.0
+offset_top = 171.0
+offset_right = 365.0
+offset_bottom = 211.0
+
+[node name="heart" type="TextureRect" parent="hearts_bar/HBoxContainer"]
+layout_mode = 2
+
+[node name="Heart" parent="hearts_bar/HBoxContainer/heart" instance=ExtResource("6_noye3")]
+position = Vector2(10, 9)
+scale = Vector2(0.025559705, 0.02376301)
+
+[node name="heart2" type="TextureRect" parent="hearts_bar/HBoxContainer"]
+layout_mode = 2
+
+[node name="Heart2" parent="hearts_bar/HBoxContainer/heart2" instance=ExtResource("6_noye3")]
+position = Vector2(6, 9)
+scale = Vector2(0.025559705, 0.02376301)
+offset = Vector2(400, 0)
+
+[node name="heart3" type="TextureRect" parent="hearts_bar/HBoxContainer"]
+layout_mode = 2
+
+[node name="Heart2" parent="hearts_bar/HBoxContainer/heart3" instance=ExtResource("6_noye3")]
+position = Vector2(12, 9)
+scale = Vector2(0.025559705, 0.02376301)
+offset = Vector2(400, 0)
+
+[node name="heart4" type="TextureRect" parent="hearts_bar/HBoxContainer"]
+layout_mode = 2
+
+[node name="Heart2" parent="hearts_bar/HBoxContainer/heart4" instance=ExtResource("6_noye3")]
+position = Vector2(18, 9)
+scale = Vector2(0.025559705, 0.02376301)
+offset = Vector2(400, 0)
+
+[node name="heart5" type="TextureRect" parent="hearts_bar/HBoxContainer"]
+layout_mode = 2
+
+[node name="Heart2" parent="hearts_bar/HBoxContainer/heart5" instance=ExtResource("6_noye3")]
+position = Vector2(23.999998, 9)
+scale = Vector2(0.025559705, 0.02376301)
+offset = Vector2(400, 0)
+
+[node name="heart6" type="TextureRect" parent="hearts_bar/HBoxContainer"]
+layout_mode = 2
+
+[node name="Heart2" parent="hearts_bar/HBoxContainer/heart6" instance=ExtResource("6_noye3")]
+position = Vector2(29.999998, 9)
+scale = Vector2(0.025559705, 0.02376301)
+offset = Vector2(400, 0)
 
 [connection signal="body_entered" from="playerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="playerHitbox" to="." method="_on_player_hitbox_body_exited"]

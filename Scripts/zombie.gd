@@ -14,11 +14,16 @@ var dead = false
 
 func _ready():
 	healthbar.init_health(health)
+
+func _process(_delta):
+	if $ZombieSounds.playing != true:
+		$ZombieSounds.play()
+	
 	
 ##########################################
 func _physics_process(delta):
 	deal_with_damage() # always checks whether player is in zombie attack zone AND currently attacking is true
-	
+	#print(player_in_attack_zone)
 	# Follow player
 	if player_chase:
 		if position.distance_to(player.position) > 10:
@@ -52,27 +57,30 @@ func _on_detection_area_body_exited(_body: Node2D)-> void:
 
 	
 func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
+	print("body entered: ",body)
 	if body is Player:
 		player_in_attack_zone = true
+		print("entered")
+		print(player_in_attack_zone) ##!
 	
 func _on_enemy_hitbox_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player_in_attack_zone = false
+		
 
 func deal_with_damage():
 	if player_in_attack_zone:
-		print("in_attack_zone true")
-	if global.player_current_attack:
-		#print("player_current_attack true")
-		if can_take_damage:
-			health -= 25
-			set_health_bar()
-			can_take_damage = false
-			await get_tree().create_timer(take_damage_cooldown).timeout
-			can_take_damage = true
-			print("zombie health = ",health)
-			if health <= 0:
-				zombie_death()
+		if global.player_current_attack:
+			if can_take_damage:
+				health -= 25
+				$KnifeSlash.play()
+				set_health_bar()
+				can_take_damage = false
+				await get_tree().create_timer(take_damage_cooldown).timeout
+				can_take_damage = true
+				print("zombie health = ",health)
+				if health <= 0:
+					zombie_death()
 
 func zombie_death():
 	dead = true
@@ -97,3 +105,17 @@ func set_health_bar():
 	
 	
 	
+
+#
+#func _on_enemy_hitbox_area_entered(area: Area2D) -> void:
+	#print("entered")
+	#if area.parent() is Player:
+		#player_in_attack_zone = true
+		#print("entered")
+		#print(player_in_attack_zone) ##!
+#
+#
+#func _on_enemy_hitbox_area_exited(area: Area2D) -> void:
+	#print("exit")
+	#if area.parent() is Player:
+		#player_in_attack_zone = false

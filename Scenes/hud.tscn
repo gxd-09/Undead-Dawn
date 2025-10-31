@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://4hic5m5yj0fp"]
+[gd_scene load_steps=4 format=3 uid="uid://4hic5m5yj0fp"]
 
 [ext_resource type="FontFile" uid="uid://bqvmcg0h6gyrl" path="res://Objects/Pickable/ByteBounce.ttf" id="1_e0onf"]
 [ext_resource type="Script" uid="uid://c1ha2f4xneq8i" path="res://Scripts/hud.gd" id="1_fccik"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fccik"]
+bg_color = Color(0.23137255, 0.23137255, 0.23137255, 0.6627451)
 
 [node name="HUD" type="Control" groups=["hud"]]
 layout_mode = 3
@@ -26,6 +29,7 @@ theme_override_font_sizes/font_size = 40
 text = "Kill Count:"
 
 [node name="Wave" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 981.0
 offset_top = 10.0
@@ -34,6 +38,7 @@ offset_bottom = 33.0
 text = "Current wave: "
 
 [node name="WaveCount" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1107.0
 offset_top = 10.0
@@ -53,3 +58,45 @@ theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("1_e0onf")
 theme_override_font_sizes/font_size = 40
 text = "00"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9626736
+anchor_top = 0.016975308
+anchor_right = 1.0260416
+anchor_bottom = 0.044753086
+offset_left = -371.0
+offset_bottom = 49.0
+grow_horizontal = 0
+scale = Vector2(0.92000246, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("1_e0onf")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_fccik")
+text = "Goal: Kill all of the undead and survive!
+"
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9921875
+anchor_top = 0.020061728
+anchor_right = 0.9921875
+anchor_bottom = 0.020061728
+offset_left = -371.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_e0onf")
+theme_override_font_sizes/font_size = 25
+text = "
+Bandage pickup: +2 Hearts
+Food can pickup: 5 second speed boost"
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true

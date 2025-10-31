@@ -2,7 +2,7 @@ class_name Player extends CharacterBody2D
 
 var enemy_in_attack_range = false
 var enemy_attack_cooldown = true
-var health = 100
+var health = 6
 var player_alive = true
 @onready var attack_cooldown = $playerHitbox/attack_cooldown
 var attack_in_progress = false
@@ -14,16 +14,17 @@ var attack_in_progress = false
 @export var animation_tree: AnimationTree
 var input: Vector2
 var playback: AnimationNodeStateMachinePlayback
+var hearts_list : Array[TextureRect]
 
 func _ready():
 	playback = animation_tree["parameters/playback"]
+	
+	var hearts_parent = $hearts_bar/HBoxContainer
+	for child in hearts_parent.get_children():
+		hearts_list.append(child)
+	print(hearts_list)
+	
 
-
-##player heart bar
-	#var hearts_parent = $health_bar/HBoxContainer
-	#for child in hearts_parent.getChildren():
-		#hearts_list.append(child)
-	#print(hearts_list)
 
 func _physics_process(_delta:float) -> void:
 	enemy_attack()
@@ -98,7 +99,9 @@ func _on_player_hitbox_body_exited(body: Node2D) -> void:
 func enemy_attack():
 	if enemy_in_attack_range and enemy_attack_cooldown:
 		global.zombie_attacking = true
-		health -= 10
+		#health -= 10
+		health -= 1
+		update_heart_display()
 		enemy_attack_cooldown = false
 		attack_cooldown.start()
 		print("player health: ", health)
@@ -111,34 +114,26 @@ func death():
 	get_tree().change_scene_to_file("res://Scenes/death_respawn.tscn")
 
 ### Player Heart Bar
-##
-#var alive : bool = true
-#
-#var hearts_list : Array[TextureRect]
-#var health = 6
-#
-#func take_damage():
-	#if enemy_in_attack_range and enemy_attack_cooldown:
-		#if health > 0:
-			#health -= 1
-			#update_heart_display()
-		#attack_cooldown.start()
-		#print("player health: ", health)
-		#
-#func update_heart_display():
-	#for i in range(hearts_list.size()):
-		#hearts_list[i].visible = i < health
-	#
-	##heart beat animation
-	#if health == 1:
-		#hearts_list[0].get_child(0).play("beating")
-	#elif health > 1:
-		#hearts_list[0].get_child(0).play("idle")
+
+		
+func update_heart_display():
+	for i in range(hearts_list.size()):
+		print("heart")
+		hearts_list[i].visible = i < health
+	
+	#heart beat animation
+	if health == 1:
+		hearts_list[0].get_child(0).play("beating")
+	elif health > 1:
+		hearts_list[0].get_child(0).play("idle")
+		
+# Pickups ######################################
 	
 func heal():
-	health += 20
-	if health > 100:
-		health = 100
+	health += 2
+	if health > 6:
+		health = 6
+	update_heart_display()
 	print(health)
 
 func speed_boost():

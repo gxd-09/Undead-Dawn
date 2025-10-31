@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ea8ws1ecxpe8"]
+
+[ext_resource type="Texture2D" uid="uid://bqlw3lpmyrxyf" path="res://UI/you win.jpg" id="1_qotes"]
+[ext_resource type="FontFile" uid="uid://bqvmcg0h6gyrl" path="res://Objects/Pickable/ByteBounce.ttf" id="2_mgkw0"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(577, 323.00003)
+scale = Vector2(1.5269601, 1.5377979)
+texture = ExtResource("1_qotes")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 286.0
+offset_top = 501.0
+offset_right = 877.0
+offset_bottom = 526.0
+theme_override_fonts/font = ExtResource("2_mgkw0")
+theme_override_font_sizes/font_size = 35
+text = "You successfully defeated all of the undead!"

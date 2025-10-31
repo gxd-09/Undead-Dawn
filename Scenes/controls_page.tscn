@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://5t3m0b668utp"]
+
+[ext_resource type="Script" uid="uid://cegtpdqpmqcsg" path="res://Scripts/controls_page.gd" id="1_yn6bp"]
+[ext_resource type="Texture2D" uid="uid://b1hkykjrswv5e" path="res://UI/3840x2160-black-solid-color-background.jpg" id="2_jjb71"]
+[ext_resource type="FontFile" uid="uid://bqvmcg0h6gyrl" path="res://Objects/Pickable/ByteBounce.ttf" id="3_6xsq4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gphie"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_yn6bp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(591, 334)
+scale = Vector2(0.3242046, 0.3242046)
+texture = ExtResource("2_jjb71")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 34.0
+offset_top = 542.0
+offset_right = 79.00003
+offset_bottom = 573.0
+scale = Vector2(2.5182958, 2.6258576)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6xsq4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gphie")
+text = "< Back"
+
+[node name="Controls_label" type="Label" parent="."]
+offset_left = 460.0
+offset_top = 194.0
+offset_right = 512.0
+offset_bottom = 217.0
+scale = Vector2(3.4531245, 3.4531245)
+theme_override_colors/font_outline_color = Color(1, 0.5710682, 0.50889343, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_6xsq4")
+text = "Controls:"
+
+[node name="Show_controls_label" type="Label" parent="."]
+offset_left = 617.0
+offset_top = 256.0
+offset_right = 675.0
+offset_bottom = 409.0
+scale = Vector2(1.9325897, 1.9325897)
+theme_override_colors/font_color = Color(1, 0.6901961, 0.60784316, 1)
+theme_override_fonts/font = ExtResource("3_6xsq4")
+text = "W
+A
+S
+D
+
+LMB / E"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 403.99997
+offset_top = 253.00002
+offset_right = 501.99997
+offset_bottom = 334.0
+scale = Vector2(1.9917703, 1.9917703)
+theme_override_fonts/font = ExtResource("3_6xsq4")
+text = "Move left -
+Move right -
+Move up -
+Move down -
+
+Attack (single) -"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

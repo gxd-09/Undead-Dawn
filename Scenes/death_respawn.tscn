@@ -1,24 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw15hwyllwf1p"]
+[gd_scene load_steps=5 format=3 uid="uid://cw15hwyllwf1p"]
 
 [ext_resource type="Script" uid="uid://h66j40keifa2" path="res://Scripts/death_respawn.gd" id="1_r2dce"]
+[ext_resource type="Texture2D" uid="uid://cyt8i66hyscsw" path="res://UI/pixel-video-game-skull-death-1280.jpg" id="2_xv3oj"]
+[ext_resource type="FontFile" uid="uid://bqvmcg0h6gyrl" path="res://Objects/Pickable/ByteBounce.ttf" id="3_1chi7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mf2h"]
+bg_color = Color(0.638806, 0.49259597, 0.6016683, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.23753911, 0.23753914, 0.23753911, 0.6)
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
 
 [node name="DeathRespawn" type="CanvasLayer"]
 script = ExtResource("1_r2dce")
 
 [node name="DeathBackground" type="Sprite2D" parent="."]
+position = Vector2(575.00006, 312)
+scale = Vector2(0.9334487, 0.9728848)
+texture = ExtResource("2_xv3oj")
 
 [node name="DeathMessage" type="Label" parent="."]
-offset_left = 489.0
-offset_top = 254.0
-offset_right = 695.0
-offset_bottom = 336.0
+offset_left = 433.00003
+offset_top = 27.0
+offset_right = 639.0
+offset_bottom = 109.0
+scale = Vector2(2.1314254, 2.2243516)
+theme_override_fonts/font = ExtResource("3_1chi7")
+theme_override_font_sizes/font_size = 40
 text = "You died!"
 
 [node name="Respawn" type="Button" parent="."]
-offset_left = 525.0
-offset_top = 360.0
-offset_right = 682.0
-offset_bottom = 422.0
+offset_left = 503.0
+offset_top = 522.0
+offset_right = 660.0
+offset_bottom = 584.0
+theme_override_fonts/font = ExtResource("3_1chi7")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_6mf2h")
 text = "Respawn"
 
 [connection signal="pressed" from="Respawn" to="." method="_on_respawn_pressed"]
